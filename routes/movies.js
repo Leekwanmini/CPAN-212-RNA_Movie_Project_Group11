@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
-const Movie = require('../models/movies');
+const Movie = require('../models/Movies');
 
 //TASK11
 //middleware to validate if userID is invaild and if it is, redirect to login page
