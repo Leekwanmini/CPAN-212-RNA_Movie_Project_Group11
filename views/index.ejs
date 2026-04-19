@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Homepage</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/movies">Movies</a>
+            <% if (!user) { %>
+                <!-- display login, rgister button when user is logged out-->
+                <a href="/auth/register">Register</a>
+                <a href="/auth/login">Login</a>
+            <% } else { %>
+                <!-- only visible when user is logged in-->
+                <span>Welcome, <%= user %></span>
+                <a href="/auth/logout">Logout</a>
+            <% } %>
+        </nav>
+        <div class="welcome">
+            <h1 class="title welcome-title">Welcome to Movies App</h1>
+            <a href="/movies" class="btn">Go to Movies</a>
+        </div>
+
+    </body>
+</html>

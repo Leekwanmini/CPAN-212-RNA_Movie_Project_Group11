@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Movie Edit</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/movies">Movies</a>
+            <% if (!user) { %>
+                <!-- display login, rgister button when user is logged out-->
+                <a href="/auth/register">Register</a>
+                <a href="/auth/login">Login</a>
+            <% } else { %>
+                <!-- only visible when user is logged in-->
+                <span>Welcome, <%= user %></span>
+                <a href="/auth/logout">Logout</a>
+            <% } %>
+        </nav>
+
+        <div class="container">
+
+        <h2 class="title">Edit Movie</h2>
+
+        <form action="/movies/edit/<%= movie._id %>" method="POST">
+
+            <input name="name" value="<%= movie.name %>">
+            <input name="description" value="<%= movie.description %>">
+            <input name="year" value="<%= movie.year %>">
+            <input name="genre" value="<%= movie.genre %>">
+            <input name="rating" value="<%= movie.rating %>">
+            <input name="image" value="<%= movie.image %>">
+
+            <button type="submit">Update Movie</button>
+        </form>
+
+        <br>
+        <a href="/movies">Back</a>
+
+        </div>
+
+    </body>
+</html>

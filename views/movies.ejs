@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Movies</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/movies">Movies</a>
+            <% if (!user) { %>
+                <!-- display login, rgister button when user is logged out-->
+                <a href="/auth/register">Register</a>
+                <a href="/auth/login">Login</a>
+            <% } else { %>
+                <!-- only visible when user is logged in-->
+                <span>Welcome, <%= user %></span>
+                <a href="/auth/logout">Logout</a>
+            <% } %>
+        </nav>
+
+        <div class="container">
+
+        <h2 class="title">Movies List</h2>
+
+        <% if (movies.length > 0) { %>
+            <div class="gridcard">
+            <% movies.forEach(movie => { %>
+                <div class="card">
+                    <h3><%= movie.name %></h3>
+                    <img src="<%= movie.image %>" width="200">
+                    <div class="cardOptions">
+                        <a href="/movies/<%= movie._id %>">View Details</a>
+                        <a href="/movies/edit/<%= movie._id %>">Edit</a>
+                    </div>
+                </div>
+            <% }) %>
+            </div>
+        <% } else { %>
+            <p>No movies found</p>
+        <% } %>
+
+        <!-- Kwan: I changed form to becomes visible only when is user logged in -->
+        <% if (user) { %>
+            <div class="addForm">
+                <h2>Add Movie</h2>
+
+                <form action="/movies/add" method="POST">
+                    <input name="name" placeholder="Name">
+                    <input name="description" placeholder="Description">
+                    <input name="year" type="number" placeholder="Year">
+                    <input name="genre" placeholder="Genre">
+                    <input name="rating" type="number" step="0.1" placeholder="Rating">
+                    <input name="image" placeholder="Image URL">
+                    <button type="submit">Add Movie</button>
+                </form>
+            </div>
+        <% } %>
+
+        </div>
+
+    </body>
+</html>
