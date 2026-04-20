@@ -88,7 +88,7 @@ router.post(
 );
 
 //TASK 7
-router.get('/edit/:id', validateLogin, async (req, res) => {
+router.get('/edit/:id', validateLogin, checkOwner, async (req, res) => {
     const movie = await Movie.findById(req.params.id);
 
     if (!movie) {
